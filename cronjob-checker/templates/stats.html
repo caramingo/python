@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cronjobs Stats</title>
+<style>
+    body { font-family: Arial; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px 12px; border: 1px solid #ccc; text-align: left; }
+
+    .OK { background-color: #c8e6c9; }        /* Зелёный */
+    .WARN { background-color: #fff9c4; }      /* Жёлтый */
+    .UNKNOWN { background-color: #e0e0e0; }   /* Серый */
+</style>
+</head>
+<body>
+    <h2>Cronjobs  Stats</h2>
+    <p>Last updated: {{ last_updated }}</p>
+    <table>
+        <tr>
+            <th>Job ID</th>
+            <th>Count</th>
+            <th>Threshold</th>
+            <th>Status</th>
+        </tr>
+        {% for job_id, info in stats.items() %}
+        <tr class="{{ info.status }}">
+            <td>{{ job_id }}</td>
+            <td>{{ info.count }}</td>
+            <td>{{ info.threshold if info.threshold is not none else "Not Set" }}</td>
+            <td>{{ info.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

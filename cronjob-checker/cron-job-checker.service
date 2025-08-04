@@ -1,0 +1,14 @@
+[Unit]
+Description=Request Counter FastAPI Service
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/cron-job-checker
+ExecStart=/usr/local/bin/uvicorn cron-job-checker:app --host 0.0.0.0 --port 8000
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
