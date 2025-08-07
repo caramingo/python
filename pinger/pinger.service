@@ -1,0 +1,16 @@
+[Unit]
+Description=IP Availability Checker
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/username/pinger.py
+Restart=always
+User=username
+WorkingDirectory=/home/username/
+StandardOutput=syslog
+StandardError=syslog
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/username/.Xauthority
+
+[Install]
+WantedBy=multi-user.target
